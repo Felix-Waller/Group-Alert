@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
       title: 'Group Alert',
       theme: ThemeData(
         primaryColor: Colors.white,
+        primaryColorBrightness: Brightness.light,
+        accentColor: Colors.blueAccent,
+        accentColorBrightness: Brightness.light,
+        backgroundColor: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
