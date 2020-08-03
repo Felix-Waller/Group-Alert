@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:group_alert/home.dart' show HomeView;
+import 'package:group_alert/homePage.dart' show HomeView;
+import 'package:group_alert/messagesPage.dart' show MessagesView;
 
 void main() {
   runApp(MyApp());
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/messages', // debugging only
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new HomeView(),
+        '/messages': (BuildContext context) => new MessagesView(),
       },
     );
   }
