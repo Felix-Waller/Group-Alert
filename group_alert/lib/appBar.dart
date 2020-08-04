@@ -14,7 +14,7 @@ class MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Center(child: Text("Home")),
+      title: Center(child: Text(getTitle())),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.menu),
@@ -22,5 +22,26 @@ class MyAppBarState extends State<MyAppBar> {
         )
       ],
     );
+  }
+
+  String getTitle(){
+    switch(ModalRoute.of(context).settings.name){
+      case '/':{
+        return 'Home';
+      }
+      break;
+      case '/messages':{
+        return 'Messages';
+      }
+      break;
+      case '/settings':{
+        return 'Settings';
+      }
+      break;
+      default:{
+        return 'Group Alert';
+      }
+      break;
+    }
   }
 }
