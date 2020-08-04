@@ -19,10 +19,8 @@ class _ListViewCard extends State<ListViewCard> {
       margin: EdgeInsets.all(4),
       color: Colors.white,
       child: InkWell(
-        splashColor: Colors.blue,
-        onTap: () => Fluttertoast.showToast(
-            msg: "Item ${widget.listItems[widget.index]} selected.",
-            toastLength: Toast.LENGTH_SHORT),
+        splashColor: Theme.of(context).splashColor,
+        onTap: () {},
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -34,20 +32,8 @@ class _ListViewCard extends State<ListViewCard> {
                     padding: const EdgeInsets.all(8.0),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Title ${widget.listItems[widget.index]}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      textAlign: TextAlign.left,
-                      maxLines: 5,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Description ${widget.listItems[widget.index]}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 16),
+                      '${widget.listItems[widget.index]}',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       textAlign: TextAlign.left,
                       maxLines: 5,
                     ),
