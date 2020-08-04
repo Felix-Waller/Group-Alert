@@ -30,6 +30,10 @@ class MessagesViewState extends State<MessagesView> {
           }
         )
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
     );
   }
 
