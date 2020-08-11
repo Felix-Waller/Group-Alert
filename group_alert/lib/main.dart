@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
         primaryColorBrightness: Brightness.light,
         accentColor: Colors.blueAccent,
         accentColorBrightness: Brightness.light,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[300],
+        canvasColor: Colors.grey[100],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/settings', // debugging only
+      darkTheme: ThemeData.dark(),
+      initialRoute: '/messages', // debugging only
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new HomeView(),
         '/messages': (BuildContext context) => new MessagesView(),
