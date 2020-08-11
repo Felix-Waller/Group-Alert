@@ -23,8 +23,7 @@ class MessagesViewState extends State<MessagesView> {
           msgList.length,
           (index) {
             return ListViewCard(
-              msgList,
-              index,
+              msgList[index],
               Key('$index'),
             );
           }
