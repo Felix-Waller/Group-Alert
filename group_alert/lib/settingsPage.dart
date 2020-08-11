@@ -21,11 +21,18 @@ class SettingsViewState extends State<SettingsView> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
                   title: Text(getUsername()),
-                  trailing: IconButton(
-                    icon: Icon(Icons.edit),
-                    onPressed: () {}, // show edit profile
-                  ),
+                  trailing: Icon(Icons.edit),
+                  onTap: () {},
                 ),
+              ),
+              Card(
+                margin: EdgeInsets.fromLTRB(32, 8, 32, 8),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: SwitchListTile(
+                  title: Text('Notifications'),
+                  value: true,
+                  onChanged: (val) {},
+                )
               ),
               Card(
                 margin: EdgeInsets.fromLTRB(32, 8, 32, 8),
@@ -34,6 +41,14 @@ class SettingsViewState extends State<SettingsView> {
                   children: <Widget>[
                     ListTile(
                       title: Center(child: Text('Reset', style: TextStyle(color: Colors.red))),
+                      onTap: () {}, // show reset app data dialog
+                    ),
+                    ListTile(
+                      title: Center(child: Text('Delete Account', style: TextStyle(color: Colors.red))),
+                      onTap: () {}, // show reset app data dialog
+                    ),
+                    ListTile(
+                      title: Center(child: Text('Log Out', style: TextStyle(color: Colors.red))),
                       onTap: () {}, // show reset app data dialog
                     ),
                   ],
