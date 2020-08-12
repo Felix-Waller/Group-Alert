@@ -1,8 +1,9 @@
-import 'package:chatapp/helper/helperfunctions.dart';
-import 'package:chatapp/services/auth.dart';
-import 'package:chatapp/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:group_alert/services/auth.dart';
+import 'package:group_alert/services/database.dart';
+import 'package:group_alert/views/signInPage.dart';
 import 'package:group_alert/widgets/appBar.dart';
+import 'package:group_alert/widgets/helperFunctions.dart';
 
 
 class SignUpView extends StatefulWidget {
@@ -131,7 +132,7 @@ class SignUpViewState extends State<SignUpView> {
               width: MediaQuery.of(context).size.width,
               child: Text(
                 "Sign Up with Google",
-                style: TextStyle(fontSize: 17, color: CustomTheme.textColor),
+                style: TextStyle(fontSize: 17),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -147,7 +148,7 @@ class SignUpViewState extends State<SignUpView> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    widget.toggleView();
+                    /* widget.toggleView(); */
                   },
                   child: Text(
                     "SignIn now",
@@ -166,6 +167,5 @@ class SignUpViewState extends State<SignUpView> {
         ),
       ),
     );
-    ;
   }
 }
