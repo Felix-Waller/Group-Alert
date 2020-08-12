@@ -9,26 +9,34 @@ class MessagesView extends StatefulWidget {
 
 class MessagesViewState extends State<MessagesView> {
   List<String> msgList = [
-  'Lunch Time!', 'Supper Time!', 'Bedtime!', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'
-];
+      'Lunch Time!',
+      'Supper Time!',
+      'Bedtime!',
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J'
+    ]; 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
       body: ReorderableListView(
-        onReorder: _onReorder,
-        scrollDirection: Axis.vertical,
-        children: List.generate(
-          msgList.length,
-          (index) {
+          onReorder: _onReorder,
+          scrollDirection: Axis.vertical,
+          children: List.generate(msgList.length, (index) {
             return ListViewCard(
               msgList[index],
               Key('$index'),
             );
-          }
-        )
-      ),
+          })),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {},
@@ -37,7 +45,8 @@ class MessagesViewState extends State<MessagesView> {
   }
 
   void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
+    setState(
+      () {
         if (newIndex > oldIndex) {
           newIndex -= 1;
         }
