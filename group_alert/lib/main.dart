@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:group_alert/views/homePage.dart';
+import 'package:group_alert/views/messagesPage.dart';
+import 'package:group_alert/views/settingsPage.dart';
+import 'package:group_alert/views/signInPage.dart';
+import 'package:group_alert/views/signUpPage.dart';
 
-import 'package:group_alert/homePage.dart' show HomeView;
-import 'package:group_alert/messagesPage.dart' show MessagesView;
-import 'package:group_alert/settingsPage.dart' show SettingsView;
-import 'package:group_alert/signInPage.dart';
-import 'package:group_alert/signUpPage.dart';
 
 void main() => runApp(MyApp());
 
