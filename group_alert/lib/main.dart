@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:group_alert/homePage.dart' show HomeView;
 import 'package:group_alert/messagesPage.dart' show MessagesView;
 import 'package:group_alert/settingsPage.dart' show SettingsView;
+import 'package:group_alert/signInPage.dart';
+import 'package:group_alert/signUpPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,11 +26,13 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       darkTheme: ThemeData.dark(),
-      initialRoute: '/', // debugging only
+      initialRoute: '/signUp', // debugging only
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new HomeView(),
         '/messages': (BuildContext context) => new MessagesView(),
         '/settings': (BuildContext context) => new SettingsView(),
+        '/signIn': (BuildContext context) => new SignInView(),
+        '/signUp': (BuildContext context) => new SignUpView(),
       },
     );
   }
