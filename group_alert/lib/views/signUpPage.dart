@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:group_alert/services/auth.dart';
 import 'package:group_alert/services/database.dart';
-import 'package:group_alert/views/signInPage.dart';
 import 'package:group_alert/widgets/appBar.dart';
 import 'package:group_alert/widgets/helperFunctions.dart';
+import 'package:group_alert/widgets/text.dart';
 
 
 class SignUpView extends StatefulWidget {
-  /* final Function toggleView; */
-  SignUpView(/* this.toggleView */);
+  SignUpView();
 
   @override
   SignUpViewState createState() => SignUpViewState();
@@ -17,8 +16,7 @@ class SignUpView extends StatefulWidget {
 class SignUpViewState extends State<SignUpView> {
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
-  TextEditingController usernameEditingController =
-      new TextEditingController();
+  TextEditingController usernameEditingController = new TextEditingController();
 
   AuthService authService = new AuthService();
   DatabaseMethods databaseMethods = new DatabaseMethods();
@@ -26,11 +24,10 @@ class SignUpViewState extends State<SignUpView> {
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
 
-  singUp() async {
+  signUp() async {
 
     if(formKey.currentState.validate()){
       setState(() {
-
         isLoading = true;
       });
 
@@ -49,9 +46,7 @@ class SignUpViewState extends State<SignUpView> {
               HelperFunctions.saveUserNameSharedPreference(usernameEditingController.text);
               HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
 
-              /* Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => ChatRoom()
-              )); */
+              Navigator.of(context).pushReplacementNamed('/');
             }
       });
     }
@@ -105,7 +100,7 @@ class SignUpViewState extends State<SignUpView> {
             ),
             GestureDetector(
               onTap: (){
-                singUp();
+                signUp();
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 16),
@@ -148,12 +143,12 @@ class SignUpViewState extends State<SignUpView> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    /* widget.toggleView(); */
+                    Navigator.of(context).pushReplacementNamed('/signIn');
                   },
                   child: Text(
-                    "SignIn now",
+                    "Sign in now",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 16,
                         decoration: TextDecoration.underline),
                   ),
