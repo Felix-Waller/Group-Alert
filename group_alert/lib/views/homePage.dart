@@ -15,12 +15,14 @@ class HomeViewState extends State<HomeView> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          // debugging:
+          IconButton(icon: Icon(Icons.home),onPressed: () => Navigator.of(context).pushReplacementNamed('/signUp'),),
           // 3 favourite msgs
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: FlatButton(
               child: Text('Lunch Time!'),
-              onPressed: () {}, // TODO
+              onPressed: () {}, 
               color: Theme.of(context).backgroundColor,
             ),
           ),
@@ -28,7 +30,7 @@ class HomeViewState extends State<HomeView> {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: FlatButton(
               child: Text('Supper Time!'),
-              onPressed: () {}, // TODO
+              onPressed: () {}, 
               color: Theme.of(context).backgroundColor,
             ),
           ),
@@ -36,7 +38,7 @@ class HomeViewState extends State<HomeView> {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: FlatButton(
               child: Text('Bedtime!'),
-              onPressed: () {}, // TODO
+              onPressed: () {}, 
               color: Theme.of(context).backgroundColor,
             ),
           ),
@@ -46,7 +48,7 @@ class HomeViewState extends State<HomeView> {
               height: MediaQuery.of(context).size.width * 0.33,
               child:RaisedButton(
               child: Text("Send!"),
-              onPressed: () {}, // TODO
+              onPressed: () {}, 
               color: Theme.of(context).accentColor,
               shape: CircleBorder(),
               elevation: 5,
@@ -59,19 +61,19 @@ class HomeViewState extends State<HomeView> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.chevron_left),
-                onPressed: () {}, // TODO
+                onPressed: () {}, 
               ),
               ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width - 100,
                 child: FlatButton(
                   child: Text('Meeting!'),
-                  onPressed: () {}, // TODO
+                  onPressed: () {}, 
                   color: Theme.of(context).backgroundColor,
                 ),
               ),
               IconButton(
                 icon: Icon(Icons.chevron_right),
-                onPressed: () {}, // TODO
+                onPressed: () {}, 
               ),
             ]
           ),

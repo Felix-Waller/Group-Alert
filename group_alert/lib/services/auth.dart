@@ -60,7 +60,7 @@ class AuthService {
 
     if (result == null) {
     } else {
-      /* Navigator.push(context, MaterialPageRoute(builder: (context) => Chat())); */
+      Navigator.of(context).pushReplacementNamed('/');
     }
   }
 
