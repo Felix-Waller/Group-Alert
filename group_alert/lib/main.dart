@@ -5,17 +5,40 @@ import 'package:group_alert/views/messagesPage.dart';
 import 'package:group_alert/views/settingsPage.dart';
 import 'package:group_alert/views/signInPage.dart';
 import 'package:group_alert/views/signUpPage.dart';
+import 'package:group_alert/widgets/helperFunctions.dart';
 
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp>{
+  bool userIsLoggedIn;
+
+  @override
+  void initState() {
+    getLoggedInState();
+    super.initState();
+  }
+
+  getLoggedInState() async {
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
+      setState(() {
+        userIsLoggedIn  = value;
+      });
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
     return MaterialApp(
       title: 'Group Alert',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.white,
         primaryColorBrightness: Brightness.light,
@@ -25,8 +48,10 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.grey[100],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+
       darkTheme: ThemeData.dark(),
-      initialRoute: '/signUp', // debugging only
+
+      initialRoute: userIsLoggedIn != null ? userIsLoggedIn ? '/' : '/signIn' : '/signIn',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new HomeView(),
         '/messages': (BuildContext context) => new MessagesView(),
