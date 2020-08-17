@@ -9,8 +9,14 @@ class SettingsView extends StatefulWidget {
 }
 
 class SettingsViewState extends State<SettingsView> {
+  String userName = '';
   @override
   Widget build(BuildContext context) {
+    HelperFunctions.getUserNameSharedPreference().then((value) {
+      setState(() {
+        userName = value;
+      });
+    });
     return Scaffold(
       appBar: MyAppBar(),
       body: Center(
@@ -23,7 +29,7 @@ class SettingsViewState extends State<SettingsView> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 child: ListTile(
-                  title: Text(getUsername()),
+                  title: Text(userName),
                   trailing: Icon(Icons.edit),
                   onTap: () {},
                 ),
@@ -73,9 +79,5 @@ class SettingsViewState extends State<SettingsView> {
         ),
       ),
     );
-  }
-
-  String getUsername() {
-    return 'John Doe';
   }
 }
