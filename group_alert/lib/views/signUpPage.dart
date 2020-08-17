@@ -7,8 +7,6 @@ import 'package:group_alert/widgets/text.dart';
 
 
 class SignUpView extends StatefulWidget {
-  SignUpView();
-
   @override
   SignUpViewState createState() => SignUpViewState();
 }
@@ -120,15 +118,18 @@ class SignUpViewState extends State<SignUpView> {
             SizedBox(
               height: 16,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: Colors.white),
-              width: MediaQuery.of(context).size.width,
-              child: Text(
-                "Sign Up with Google",
-                style: TextStyle(fontSize: 17),
-                textAlign: TextAlign.center,
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30), color: Colors.white),
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  "Sign Up with Google",
+                  style: TextStyle(fontSize: 17),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
             SizedBox(

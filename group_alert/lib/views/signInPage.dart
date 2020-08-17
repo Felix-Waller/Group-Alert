@@ -7,10 +7,6 @@ import 'package:group_alert/widgets/helperFunctions.dart';
 import 'package:group_alert/widgets/text.dart';
 
 class SignInView extends StatefulWidget {
-  /* final Function toggleView; */
-
-  SignInView(/* this.toggleView */);
-
   @override
   SignInViewState createState() => SignInViewState();
 }
@@ -88,7 +84,7 @@ class SignInViewState extends State<SignInView> {
                         TextFormField(
                           obscureText: true,
                           validator: (val) {
-                            return val.length > 6
+                            return val.length >= 6
                                 ? null
                                 : "Enter Password 6+ characters";
                           },
