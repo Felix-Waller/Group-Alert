@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:group_alert/other/helperFunctions.dart';
+import 'package:group_alert/other/text.dart';
 import 'package:group_alert/services/auth.dart';
 import 'package:group_alert/services/database.dart';
 import 'package:group_alert/widgets/appBar.dart';
-import 'package:group_alert/widgets/helperFunctions.dart';
-import 'package:group_alert/widgets/text.dart';
 
 class SignInView extends StatefulWidget {
   @override

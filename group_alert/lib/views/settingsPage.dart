@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/widgets/appBar.dart';
 import 'package:group_alert/services/auth.dart';
-import 'package:group_alert/widgets/helperFunctions.dart';
 
 class SettingsView extends StatefulWidget {
   @override

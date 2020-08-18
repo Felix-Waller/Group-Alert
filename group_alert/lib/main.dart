@@ -6,8 +6,9 @@ import 'package:group_alert/views/messagesPage.dart';
 import 'package:group_alert/views/settingsPage.dart';
 import 'package:group_alert/views/signInPage.dart';
 import 'package:group_alert/views/signUpPage.dart';
-import 'package:group_alert/widgets/helperFunctions.dart';
-import 'package:group_alert/widgets/theme.dart';
+
+import 'other/helperFunctions.dart';
+import 'other/theme.dart';
 
 void main() async {
   runApp(LoadingScreen());
