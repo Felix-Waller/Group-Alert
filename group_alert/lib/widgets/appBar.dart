@@ -19,7 +19,7 @@ class MyAppBarState extends State<MyAppBar> {
       leading: IconButton(
         icon: Icon(Icons.home),
         onPressed: () => Navigator.of(context).pushReplacementNamed('/'),
-        ),
+      ),
       title: Center(child: Text(getTitle())),
       actions: <Widget>[
         PopupMenuButton(
