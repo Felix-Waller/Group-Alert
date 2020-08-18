@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:group_alert/views/homePage.dart';
+import 'package:group_alert/views/loadingPage.dart';
 import 'package:group_alert/views/messagesPage.dart';
 import 'package:group_alert/views/settingsPage.dart';
 import 'package:group_alert/views/signInPage.dart';
 import 'package:group_alert/views/signUpPage.dart';
 import 'package:group_alert/widgets/helperFunctions.dart';
+import 'package:group_alert/widgets/theme.dart';
 
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  @override
-  MyAppState createState() => MyAppState();
+void main() async {
+  runApp(LoadingScreen());
+  runApp(MyApp(await getLoggedInState()));
 }
 
-class MyAppState extends State<MyApp>{
-  bool userIsLoggedIn;
+Future<bool> getLoggedInState() async {
+  return await HelperFunctions.getUserLoggedInSharedPreference();
+}
 
+class LoadingScreen extends StatelessWidget {
   @override
-  void initState() {
-    getLoggedInState();
-    super.initState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Group Alert',
+      theme: MyTheme.lightTheme(),
+      home: new LoadingPage(),
+    );
   }
+}
 
-  getLoggedInState() async {
-    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
-      setState(() {
-        userIsLoggedIn  = value;
-      });
-    });
-  }
-  
+class MyApp extends StatelessWidget {
+  final bool userIsLoggedIn;
+
+  MyApp(this.userIsLoggedIn);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
@@ -39,19 +41,10 @@ class MyAppState extends State<MyApp>{
     return MaterialApp(
       title: 'Group Alert',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        primaryColorBrightness: Brightness.light,
-        accentColor: Colors.blueAccent,
-        accentColorBrightness: Brightness.light,
-        backgroundColor: Colors.grey[300],
-        canvasColor: Colors.grey[100],
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: MyTheme.lightTheme(),
+      darkTheme: MyTheme.darkTheme(),
 
-      darkTheme: ThemeData.dark(),
-
-      initialRoute: userIsLoggedIn != null ? userIsLoggedIn ? '/' : '/signIn' : '/signIn',
+      initialRoute: userIsLoggedIn != null ? (userIsLoggedIn ? '/' : '/signIn') : '/signIn',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => new HomeView(),
         '/messages': (BuildContext context) => new MessagesView(),
