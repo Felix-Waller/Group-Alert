@@ -55,7 +55,10 @@ class SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Sign In'),
+      ),
       body: isLoading
           ? Container(
               child: Center(child: CircularProgressIndicator()),
