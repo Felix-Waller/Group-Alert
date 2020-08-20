@@ -25,7 +25,7 @@ class LoadingScreen extends StatelessWidget {
     return MaterialApp(
       title: 'Group Alert',
       theme: MyTheme.lightTheme(),
-      home: new LoadingPage(),
+      home: new LoadingPageView(),
     );
   }
 }
