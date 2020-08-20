@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseMethods {
+
+  // create new user
   Future<void> addUserInfo(userData) async {
     Firestore.instance.collection("users").add(userData).catchError((e) {
       print(e.toString());
     });
   }
 
+  // fetch user data
   getUserInfo(String email) async {
     var a = Firestore.instance
         .collection("users")
@@ -18,6 +21,7 @@ class DatabaseMethods {
     return a;
   }
 
+  // fetch usernames
   searchByName(String searchField) {
     return Firestore.instance
         .collection("users")
@@ -25,7 +29,8 @@ class DatabaseMethods {
         .getDocuments();
   }
 
-  Future<bool> addChatRoom(chatRoom, chatRoomId) {
+  // create new group
+  addChatRoom(chatRoom, chatRoomId) {
     Firestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
@@ -35,6 +40,7 @@ class DatabaseMethods {
     });
   }
 
+  // get messages from group
   getChats(String chatRoomId) async {
     return Firestore.instance
         .collection("chatRoom")
@@ -44,7 +50,8 @@ class DatabaseMethods {
         .snapshots();
   }
 
-  Future<void> addMessage(String chatRoomId, chatMessageData) {
+  // add message to group
+  addMessage(String chatRoomId, chatMessageData) {
     Firestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
@@ -55,8 +62,9 @@ class DatabaseMethods {
     });
   }
 
+  // get messages user has sent
   getUserChats(String itIsMyName) async {
-    return await Firestore.instance
+    return Firestore.instance
         .collection("chatRoom")
         .where('users', arrayContains: itIsMyName)
         .snapshots();
