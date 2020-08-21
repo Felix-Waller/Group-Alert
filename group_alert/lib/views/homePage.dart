@@ -16,7 +16,8 @@ class HomeViewState extends State<HomeView> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // debugging:
-          IconButton(icon: Icon(Icons.home),onPressed: () => Navigator.of(context).pushReplacementNamed('/signUp'),),
+          IconButton(icon: Icon(Icons.home),onPressed: () => Navigator.of(context).pushReplacementNamed('/chat', 
+          arguments: {'A8pyc3cw1LQG53NuliXb', 'test4', 'groupTest1'}),),
           // 3 favourite msgs
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
