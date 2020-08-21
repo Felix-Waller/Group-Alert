@@ -62,11 +62,11 @@ class DatabaseMethods {
     });
   }
 
-  // get messages user has sent
+/*   // get messages user has sent
   getUserChats(String itIsMyName) async {
     return Firestore.instance
         .collection("chatRoom")
         .where('users', arrayContains: itIsMyName)
         .snapshots();
-  }
+  } */
 }
