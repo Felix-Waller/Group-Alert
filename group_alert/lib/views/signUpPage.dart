@@ -3,7 +3,6 @@ import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/other/text.dart';
 import 'package:group_alert/services/auth.dart';
 import 'package:group_alert/services/database.dart';
-import 'package:group_alert/widgets/appBar.dart';
 
 
 class SignUpView extends StatefulWidget {
@@ -44,7 +43,7 @@ class SignUpViewState extends State<SignUpView> {
               HelperFunctions.saveUserNameSharedPreference(usernameEditingController.text);
               HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
 
-              Navigator.of(context).pushReplacementNamed('/');
+              Navigator.of(context).pushReplacementNamed('/signIn'); // redirect to sign in so user has to verify email
             }
       });
     }
