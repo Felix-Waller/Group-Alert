@@ -53,13 +53,17 @@ class SettingsViewState extends State<SettingsView> {
                       title: Center(
                           child: Text('Reset',
                               style: TextStyle(color: Colors.red))),
-                      onTap: () {}, // show reset app data dialog
+                      onTap: () {
+                        AuthService().signOut(); 
+                        // add other saved preferences as they are implemented
+                        Navigator.of(context).pushReplacementNamed('/signIn');
+                      },
                     ),
                     ListTile(
                       title: Center(
                           child: Text('Delete Account',
                               style: TextStyle(color: Colors.red))),
-                      onTap: () {}, // show reset app data dialog
+                      onTap: () {},
                     ),
                     ListTile(
                       title: Center(
@@ -67,9 +71,8 @@ class SettingsViewState extends State<SettingsView> {
                               style: TextStyle(color: Colors.red))),
                       onTap: () {
                         AuthService().signOut();
-                        HelperFunctions.saveUserLoggedInSharedPreference(false);
                         Navigator.of(context).pushReplacementNamed('/signIn');
-                      }, // show reset app data dialog
+                      },
                     ),
                   ],
                 ),
