@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:group_alert/views/chatPage.dart';
 import 'package:group_alert/views/homePage.dart';
 import 'package:group_alert/views/loadingPage.dart';
 import 'package:group_alert/views/messagesPage.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/settings': (BuildContext context) => new SettingsView(),
         '/signIn': (BuildContext context) => new SignInView(),
         '/signUp': (BuildContext context) => new SignUpView(),
+        '/chat': (BuildContext context) => new ChatPage(),
       },
     );
   }
