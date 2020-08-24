@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:group_alert/views/chatPage.dart';
 import 'package:group_alert/views/homePage.dart';
 import 'package:group_alert/views/loadingPage.dart';
 import 'package:group_alert/views/messagesPage.dart';
