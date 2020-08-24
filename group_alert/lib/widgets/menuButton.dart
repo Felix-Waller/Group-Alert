@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_alert/views/chatPage.dart';
 
-enum Menu { home, chat, messages, settings }
+enum Menu { home, chat, settings }
 
 class MyMenuButton extends StatefulWidget {
   @override
@@ -23,10 +23,6 @@ class MyMenuButtonState extends State<MyMenuButton>{
           child: Text('Chat')
           ),
         const PopupMenuItem<Menu>(
-          value: Menu.messages,
-          child: Text('Messages'),
-        ),
-        const PopupMenuItem<Menu>(
           value: Menu.settings,
           child: Text('Settings'),
         ),
@@ -47,11 +43,6 @@ class MyMenuButtonState extends State<MyMenuButton>{
             ChatPage(groupId: 'A8pyc3cw1LQG53NuliXb', userName: 'felix', groupName: 'groupTest1',)));
       }
       break;
-      case Menu.messages:
-        {
-          Navigator.of(context).pushReplacementNamed('/messages');
-        }
-        break;
       case Menu.settings:
         {
           Navigator.of(context).pushReplacementNamed('/settings');
