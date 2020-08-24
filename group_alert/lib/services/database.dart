@@ -65,11 +65,11 @@ class DatabaseMethods {
     });
   }
 
-/*   // get messages user has sent
-  getUserChats(String itIsMyName) async {
-    return Firestore.instance
-        .collection("chatRoom")
-        .where('users', arrayContains: itIsMyName)
-        .snapshots();
-  } */
+  deleteUser(){
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    _auth.currentUser().then((value) => {
+      Firestore.instance.collection("users").document(value.uid).delete()
+    });
+  }
 }

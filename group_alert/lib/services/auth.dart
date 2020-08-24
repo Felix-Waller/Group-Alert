@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/other/user.dart';
+import 'package:group_alert/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,11 +18,11 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
 
-      if (user.isEmailVerified) { // only allow app access if verified
+      if (user.isEmailVerified) {
+        // only allow app access if verified
         return _userFromFirebaseUser(user);
       }
       return null;
-
     } catch (e) {
       print(e.toString());
       return null;
@@ -73,7 +74,7 @@ class AuthService {
         accessToken: googleSignInAuthentication.accessToken);
 
     AuthResult result = await _auth.signInWithCredential(credential);
-    
+
     if (result == null) {
     } else {
       Navigator.of(context).pushReplacementNamed('/');
@@ -90,6 +91,20 @@ class AuthService {
       HelperFunctions.saveUserEmailSharedPreference(null);
       HelperFunctions.saveUserNameSharedPreference(null);
       return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future deleteAccount() async {
+    try {
+      HelperFunctions.saveUserLoggedInSharedPreference(false);
+      HelperFunctions.saveUserEmailSharedPreference(null);
+      HelperFunctions.saveUserNameSharedPreference(null);
+      DatabaseMethods().deleteUser();
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
+      return user.delete();
     } catch (e) {
       print(e.toString());
       return null;
