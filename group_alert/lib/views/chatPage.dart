@@ -4,7 +4,6 @@ import 'package:group_alert/services/database.dart';
 import 'messageTile.dart';
 
 class ChatPage extends StatefulWidget {
-
   final String groupId;
   final String userName;
   final String groupName;
@@ -12,7 +11,7 @@ class ChatPage extends StatefulWidget {
   ChatPage({
     this.groupId,
     this.userName,
-    this.groupName
+    this.groupName,
   });
 
   @override
@@ -20,26 +19,23 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  
   Stream<QuerySnapshot> _chats;
   TextEditingController messageEditingController = new TextEditingController();
 
-  Widget _chatMessages(){
+  Widget _chatMessages() {
     return StreamBuilder(
       stream: _chats,
-      builder: (context, snapshot){
-        return snapshot.hasData ?  ListView.builder(
-          itemCount: snapshot.data.documents.length,
-          itemBuilder: (context, index){
-            return MessageTile(
-              message: snapshot.data.documents[index].data["message"],
-              sender: snapshot.data.documents[index].data["sender"],
-              sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
-            );
-          }
-        )
-        :
-        Container();
+      builder: (context, snapshot) {
+        return snapshot.hasData ? ListView.builder(
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return MessageTile(
+                    message: snapshot.data.documents[index].data["text"],
+                    sender: snapshot.data.documents[index].data["sender"],
+                    sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
+                  );
+                })
+            : Container();
       },
     );
   }
@@ -64,7 +60,6 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     DatabaseMethods().getChats(widget.groupId).then((val) {
-      // print(val);
       setState(() {
         _chats = val;
       });
@@ -96,22 +91,17 @@ class _ChatPageState extends State<ChatPage> {
                     Expanded(
                       child: TextField(
                         controller: messageEditingController,
-                        style: TextStyle(
-                          color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          hintText: "Send a message ...",
-                          hintStyle: TextStyle(
-                            color: Colors.white38,
-                            fontSize: 16,
-                          ),
-                          border: InputBorder.none
-                        ),
+                            hintText: "Send a message ...",
+                            hintStyle: TextStyle(
+                              color: Colors.white38,
+                              fontSize: 16,
+                            ),
+                            border: InputBorder.none),
                       ),
                     ),
-
                     SizedBox(width: 12.0),
-
                     GestureDetector(
                       onTap: () {
                         _sendMessage();
@@ -120,10 +110,10 @@ class _ChatPageState extends State<ChatPage> {
                         height: 50.0,
                         width: 50.0,
                         decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
-                        child: Center(child: Icon(Icons.send, color: Colors.white)),
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Center(
+                            child: Icon(Icons.send, color: Colors.white)),
                       ),
                     )
                   ],
