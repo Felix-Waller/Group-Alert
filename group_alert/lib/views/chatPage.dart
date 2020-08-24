@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_alert/services/database.dart';
 import 'package:group_alert/widgets/menuButton.dart';
-import 'messageTile.dart';
+import 'package:group_alert/widgets/messageTile.dart';
 
 class ChatPage extends StatefulWidget {
   final String groupId;
