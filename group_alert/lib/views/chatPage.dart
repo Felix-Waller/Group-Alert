@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_alert/services/database.dart';
+import 'package:group_alert/widgets/menuButton.dart';
 import 'messageTile.dart';
 
 class ChatPage extends StatefulWidget {
@@ -45,7 +46,7 @@ class _ChatPageState extends State<ChatPage> {
       Map<String, dynamic> chatMessageMap = {
         "text": messageEditingController.text,
         "sender": widget.userName,
-        'time': DateTime.now()/* .millisecondsSinceEpoch */,
+        'time': DateTime.now(),
       };
 
       DatabaseMethods().addMessage(widget.groupId, chatMessageMap);
@@ -70,22 +71,25 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.groupName, style: TextStyle(color: Colors.white)),
-        centerTitle: true,
-        backgroundColor: Colors.black87,
-        elevation: 0.0,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () => Navigator.of(context).pushReplacementNamed('/'),
+        ),
+        title: Center(child: Text(widget.groupName)),
+        actions: <Widget>[
+          MyMenuButton(),
+        ],
       ),
       body: Container(
         child: Stack(
           children: <Widget>[
             _chatMessages(),
-            // Container(),
             Container(
               alignment: Alignment.bottomCenter,
               width: MediaQuery.of(context).size.width,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                color: Colors.grey[700],
+                color: Colors.grey[500],
                 child: Row(
                   children: <Widget>[
                     Expanded(
