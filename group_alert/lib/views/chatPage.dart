@@ -43,9 +43,9 @@ class _ChatPageState extends State<ChatPage> {
   _sendMessage() {
     if (messageEditingController.text.isNotEmpty) {
       Map<String, dynamic> chatMessageMap = {
-        "message": messageEditingController.text,
+        "text": messageEditingController.text,
         "sender": widget.userName,
-        'time': DateTime.now().millisecondsSinceEpoch,
+        'time': DateTime.now()/* .millisecondsSinceEpoch */,
       };
 
       DatabaseMethods().addMessage(widget.groupId, chatMessageMap);
