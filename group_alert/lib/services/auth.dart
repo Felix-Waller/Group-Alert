@@ -59,7 +59,7 @@ class AuthService {
     }
   }
 
-  Future<FirebaseUser> signInWithGoogle(BuildContext context) async {
+  signInWithGoogle(BuildContext context) async {
     // TODO: confirm signInWithGoogle works
     final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
@@ -73,8 +73,7 @@ class AuthService {
         accessToken: googleSignInAuthentication.accessToken);
 
     AuthResult result = await _auth.signInWithCredential(credential);
-    FirebaseUser userDetails = result.user;
-
+    
     if (result == null) {
     } else {
       Navigator.of(context).pushReplacementNamed('/');
