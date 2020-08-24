@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:group_alert/views/chatPage.dart';
+import 'package:group_alert/services/database.dart';
 import 'package:group_alert/widgets/appBar.dart';
 
 class HomeView extends StatefulWidget {
@@ -8,6 +8,11 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeViewState extends State<HomeView> {
+  String selected;
+  String groupId = 'A8pyc3cw1LQG53NuliXb';
+  String userName = 'felix';
+  String groupName = 'groupTest1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,19 +21,12 @@ class HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            // debugging:
-            IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (BuildContext context) => 
-                ChatPage(groupId: 'A8pyc3cw1LQG53NuliXb', userName: 'felix', groupName: 'groupTest1',)))
-              ),
             // 3 favourite msgs
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
                 child: Text('Lunch Time!'),
-                onPressed: () {},
+                onPressed: () {selected = "Lunch Time!";},
                 color: Theme.of(context).backgroundColor,
               ),
             ),
@@ -36,7 +34,7 @@ class HomeViewState extends State<HomeView> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
                 child: Text('Supper Time!'),
-                onPressed: () {},
+                onPressed: () {selected = "SupperTime!";},
                 color: Theme.of(context).backgroundColor,
               ),
             ),
@@ -44,7 +42,7 @@ class HomeViewState extends State<HomeView> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
                 child: Text('Bedtime!'),
-                onPressed: () {},
+                onPressed: () {selected = "Bedtiume!";},
                 color: Theme.of(context).backgroundColor,
               ),
             ),
@@ -54,7 +52,19 @@ class HomeViewState extends State<HomeView> {
               height: MediaQuery.of(context).size.width * 0.33,
               child: RaisedButton(
                 child: Text("Send!"),
-                onPressed: () {},
+                onPressed: () {
+                  if (selected != null) {
+                    Map<String, dynamic> chatMessageMap = {
+                      "text": selected,
+                      "sender": userName,
+                      'time': DateTime.now(),
+                    };
+
+                    DatabaseMethods().addMessage(groupId, chatMessageMap);
+
+                    selected = null;
+                  }
+                },
                 color: Theme.of(context).accentColor,
                 shape: CircleBorder(),
                 elevation: 5,
