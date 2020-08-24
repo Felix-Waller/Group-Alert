@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseMethods {
 
   // create new user
-  Future<void> addUserInfo(userData) async {
-    Firestore.instance.collection("users").add(userData).catchError((e) {
-      print(e.toString());
-    });
+  Future<void> addUserInfo(userData) async {    
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    _auth.currentUser().then((value) => {
+      Firestore.instance.collection("users").document(value.uid).setData(userData)
+    }); 
   }
 
   // fetch user data
