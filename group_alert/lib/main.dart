@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         '/settings': (BuildContext context) => new SettingsView(),
         '/signIn': (BuildContext context) => new SignInView(),
         '/signUp': (BuildContext context) => new SignUpView(),
-        '/chat': (BuildContext context) => new ChatPage(),
+        // '/chat': (BuildContext context) => new ChatPage(), arguments dependent on runtime factors so remove from named routes?
       },
     );
   }
