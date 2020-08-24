@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/services/database.dart';
 import 'package:group_alert/widgets/appBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -13,8 +15,30 @@ class HomeViewState extends State<HomeView> {
   String userName = 'felix';
   String groupName = 'groupTest1';
 
+  String text1;
+  String text2;
+  String text3;
+
+  @override
+  initState() {
+    getText().then((val) => {
+      text1 = val[0],
+      text2 = val[1],
+      text3 = val[2],
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    getText().then((val) => {
+          setState(() {
+            text1 = val[0];
+            text2 = val[1];
+            text3 = val[2];
+          })
+        });
+
     return Scaffold(
         appBar: MyAppBar(),
         body: Column(
@@ -25,24 +49,30 @@ class HomeViewState extends State<HomeView> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
-                child: Text('Lunch Time!'),
-                onPressed: () {selected = "Lunch Time!";},
+                child: Text(text1),
+                onPressed: () {
+                  selected = text1;
+                },
                 color: Theme.of(context).backgroundColor,
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
-                child: Text('Supper Time!'),
-                onPressed: () {selected = "SupperTime!";},
+                child: Text(text2),
+                onPressed: () {
+                  selected = text2;
+                },
                 color: Theme.of(context).backgroundColor,
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: FlatButton(
-                child: Text('Bedtime!'),
-                onPressed: () {selected = "Bedtiume!";},
+                child: Text(text3),
+                onPressed: () {
+                  selected = text3;
+                },
                 color: Theme.of(context).backgroundColor,
               ),
             ),
@@ -92,9 +122,15 @@ class HomeViewState extends State<HomeView> {
                     onPressed: () {},
                   ),
                 ]),
-
-            Divider(),
           ],
         ));
+  }
+
+  Future<List<String>> getText() async {
+    List<String> myList = List<String>(3);
+    myList[0] = await HelperFunctions.getTextSharedPreference('TEXT1KEY');
+    myList[1] = await HelperFunctions.getTextSharedPreference('TEXT2KEY');
+    myList[2] = await HelperFunctions.getTextSharedPreference('TEXT3KEY');
+    return myList;
   }
 }
