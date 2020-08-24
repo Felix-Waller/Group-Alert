@@ -24,20 +24,23 @@ class _ChatPageState extends State<ChatPage> {
   TextEditingController messageEditingController = new TextEditingController();
 
   Widget _chatMessages() {
-    return StreamBuilder(
-      stream: _chats,
-      builder: (context, snapshot) {
-        return snapshot.hasData ? ListView.builder(
-                itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index) {
-                  return MessageTile(
-                    message: snapshot.data.documents[index].data["text"],
-                    sender: snapshot.data.documents[index].data["sender"],
-                    sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
-                  );
-                })
-            : Container();
-      },
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,0,0,70),
+      child: StreamBuilder(
+        stream: _chats,
+        builder: (context, snapshot) {
+          return snapshot.hasData ? ListView.builder(
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index) {
+                    return MessageTile(
+                      message: snapshot.data.documents[index].data["text"],
+                      sender: snapshot.data.documents[index].data["sender"],
+                      sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
+                    );
+                  })
+              : Container();
+        },
+      ),
     );
   }
 
@@ -82,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
       ),
       body: Container(
         child: Stack(
-          children: <Widget>[
+          children: <Widget>[ 
             _chatMessages(),
             Container(
               alignment: Alignment.bottomCenter,
