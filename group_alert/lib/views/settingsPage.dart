@@ -56,11 +56,11 @@ class SettingsViewState extends State<SettingsView> {
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: [
-                    MsgEditTile('TEXT1KEY'),
+                    MsgEditTile('TEXT1KEY', 'Lunch Time!'),
                     _buildDivider(),
-                    MsgEditTile('TEXT2KEY'),
+                    MsgEditTile('TEXT2KEY', 'Dinner Time!'),
                     _buildDivider(),
-                    MsgEditTile('TEXT3KEY'),
+                    MsgEditTile('TEXT3KEY', 'Bedtime!'),
                   ],
                 ),
               ),

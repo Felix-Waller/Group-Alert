@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/services/database.dart';
 import 'package:group_alert/widgets/appBar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -15,29 +14,19 @@ class HomeViewState extends State<HomeView> {
   String userName = 'felix';
   String groupName = 'groupTest1';
 
-  String text1;
-  String text2;
-  String text3;
-
-  @override
-  initState() {
-    getText().then((val) => {
-      text1 = val[0],
-      text2 = val[1],
-      text3 = val[2],
-    });
-    super.initState();
-  }
+  String text1 = "Lunch Time!";
+  String text2 = "Dinner Time!";
+  String text3 = "Bedtime!";
 
   @override
   Widget build(BuildContext context) {
     getText().then((val) => {
-          setState(() {
-            text1 = val[0];
-            text2 = val[1];
-            text3 = val[2];
-          })
-        });
+      setState(() {
+        text1 = val[0] ?? text1;
+        text2 = val[1] ?? text2;
+        text3 = val[2] ?? text3;
+      })
+    });
 
     return Scaffold(
         appBar: MyAppBar(),
