@@ -46,8 +46,8 @@ class DatabaseMethods {
   }
 
   // add user to existing group
-  addUserToGroup(String chatRoomId, String userName) {
-    List<String> users;
+  addUserToGroup(String chatRoomId, String userName) { // TODO: fix
+    List<String> users; 
     Firestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
