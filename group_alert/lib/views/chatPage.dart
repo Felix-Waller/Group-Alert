@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:group_alert/services/database.dart';
+import 'package:group_alert/widgets/acceptUserTile.dart';
 import 'package:group_alert/widgets/menuButton.dart';
 import 'package:group_alert/widgets/messageTile.dart';
 
@@ -30,15 +31,30 @@ class _ChatPageState extends State<ChatPage> {
         stream: _chats,
         builder: (context, snapshot) {
           return snapshot.hasData ? ListView.builder(
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context, index) {
-                    return MessageTile(
-                      message: snapshot.data.documents[index].data["text"],
-                      sender: snapshot.data.documents[index].data["sender"],
-                      sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
-                    );
-                  })
-              : Container();
+            reverse: true,
+            itemCount: snapshot.data.documents.length,
+            itemBuilder: (context, index) {
+              /* if (snapshot.data.documents[index].data["sender"] != "acceptUser") {
+                return MessageTile(
+                  message: snapshot.data.documents[index].data["text"],
+                  sender: snapshot.data.documents[index].data["sender"],
+                  sentByMe: widget.userName == snapshot.data.documents[index].data["sender"],
+                );
+              } else {
+                return AcceptUserTile(snapshot.data.documents[index].data["text"]);
+              } */
+              if (snapshot.data.documents[snapshot.data.documents.length - index - 1].data["sender"] != "acceptUser") {
+                return MessageTile(
+                  message: snapshot.data.documents[snapshot.data.documents.length - index - 1].data["text"],
+                  sender: snapshot.data.documents[snapshot.data.documents.length - index - 1].data["sender"],
+                  sentByMe: widget.userName == snapshot.data.documents[snapshot.data.documents.length - index - 1].data["sender"],
+                );
+              } else {
+                return AcceptUserTile(widget.groupId, snapshot.data.documents[snapshot.data.documents.length - index - 1].data["text"]);
+              }
+            }
+          )
+          : Container();
         },
       ),
     );
