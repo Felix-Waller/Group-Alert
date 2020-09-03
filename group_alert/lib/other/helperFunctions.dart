@@ -49,6 +49,6 @@ class HelperFunctions{
   // get text field
   static Future<String> getTextSharedPreference(String key) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return preferences.getString(key) ?? "Default Message";
+    return preferences.getString(key);
   }
 }
