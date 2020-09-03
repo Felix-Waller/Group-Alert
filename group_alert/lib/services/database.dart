@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseMethods {
-
   // create new user
-  Future<void> addUserInfo(userData) async {    
+  Future<void> addUserInfo(userData) async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     _auth.currentUser().then((value) => {
-      Firestore.instance.collection("users").document(value.uid).setData(userData)
-    }); 
+          Firestore.instance
+              .collection("users")
+              .document(value.uid)
+              .setData(userData)
+        });
   }
 
   // fetch user data
@@ -43,6 +45,24 @@ class DatabaseMethods {
     });
   }
 
+  // add user to existing group
+  addUserToGroup(String chatRoomId, String userName) {
+    List<String> users;
+    Firestore.instance
+        .collection("chatRoom")
+        .document(chatRoomId)
+        .get()
+        .then((val) {
+      users = val.data["users"];
+      users.add(userName);
+      Firestore.instance
+        .collection("chatRoom")
+        .document(chatRoomId)
+        .updateData({"users": FieldValue.arrayUnion(users)
+      });
+    });
+  }
+
   // get messages from group
   getChats(String chatRoomId) async {
     return Firestore.instance
@@ -65,11 +85,11 @@ class DatabaseMethods {
     });
   }
 
-  deleteUser(){
+  // delete user account
+  deleteUser() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    _auth.currentUser().then((value) => {
-      Firestore.instance.collection("users").document(value.uid).delete()
-    });
+    _auth.currentUser().then((value) =>
+        {Firestore.instance.collection("users").document(value.uid).delete()});
   }
 }
