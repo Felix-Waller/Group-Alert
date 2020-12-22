@@ -4,7 +4,6 @@ import 'package:group_alert/other/helperFunctions.dart';
 import 'package:group_alert/other/text.dart';
 import 'package:group_alert/services/auth.dart';
 import 'package:group_alert/services/database.dart';
-import 'package:group_alert/widgets/appBar.dart';
 
 class SignInView extends StatefulWidget {
   @override
@@ -22,7 +21,7 @@ class SignInViewState extends State<SignInView> {
   bool isLoading = false;
 
   signIn() async {
-    if (formKey.currentState.validate()) {
+/*     if (formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
@@ -48,8 +47,8 @@ class SignInViewState extends State<SignInView> {
             //show snackbar
           });
         }
-      });
-    }
+      }); 
+    } */
   }
 
   @override

@@ -52,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
         'time': DateTime.now().millisecondsSinceEpoch,
       };
 
-      DatabaseMethods().sendMessage(widget.groupId, chatMessageMap);
+      /* DatabaseMethods().sendMessage(widget.groupId, chatMessageMap); */
 
       setState(() {
         messageEditingController.text = "";

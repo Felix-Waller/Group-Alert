@@ -4,14 +4,14 @@ class DatabaseMethods {
 
   // create new user
   Future<void> addUserInfo(userData) async {
-    Firestore.instance.collection("users").add(userData).catchError((e) {
+    FirebaseFirestore.instance.collection("users").add(userData).catchError((e) {
       print(e.toString());
     });
   }
 
   // fetch user data
   getUserInfo(String email) async {
-    var a = Firestore.instance
+    var a = FirebaseFirestore.instance
         .collection("users")
         .where("userEmail", isEqualTo: email)
         .getDocuments()
@@ -23,7 +23,7 @@ class DatabaseMethods {
 
   // fetch usernames
   searchByName(String searchField) {
-    return Firestore.instance
+    return FirebaseFirestore.instance
         .collection("users")
         .where('userName', isEqualTo: searchField)
         .getDocuments();
@@ -31,7 +31,7 @@ class DatabaseMethods {
 
   // create new group
   addChatRoom(chatRoom, chatRoomId) {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
         .setData(chatRoom)
@@ -42,7 +42,7 @@ class DatabaseMethods {
 
   // get messages from group
   getChats(String chatRoomId) async {
-    return Firestore.instance
+    return FirebaseFirestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
         .collection("chats")
@@ -52,7 +52,7 @@ class DatabaseMethods {
 
   // add message to group
   addMessage(String chatRoomId, chatMessageData) {
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
         .collection("chats")
@@ -64,7 +64,7 @@ class DatabaseMethods {
 
   // get messages user has sent
   getUserChats(String itIsMyName) async {
-    return Firestore.instance
+    return FirebaseFirestore.instance
         .collection("chatRoom")
         .where('users', arrayContains: itIsMyName)
         .snapshots();

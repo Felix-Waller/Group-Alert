@@ -2,37 +2,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:group_alert/other/helperFunctions.dart';
-import 'package:group_alert/other/user.dart';
+import 'package:group_alert/other/user.dart' as User;
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+  User.User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? User.User(uid: user.uid) : null;
   }
 
   Future signInWithEmailAndPassword(String email, String password) async {
-    try {
+/*     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
+      print(e.toString()); */
       return null;
-    }
+    // }
   }
 
   Future signUpWithEmailAndPassword(String email, String password) async {
-    try {
+/*     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
+      print(e.toString()); */
       return null;
-    }
+    // }
   }
 
   Future resetPass(String email) async {
@@ -45,7 +45,7 @@ class AuthService {
   }
 
   Future<FirebaseUser> signInWithGoogle(BuildContext context) async {
-    final GoogleSignIn _googleSignIn = new GoogleSignIn();
+/*     final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
     final GoogleSignInAccount googleSignInAccount =
         await _googleSignIn.signIn();
@@ -60,9 +60,9 @@ class AuthService {
     FirebaseUser userDetails = result.user;
 
     if (result == null) {
-    } else {
+    } else { */
       Navigator.of(context).pushReplacementNamed('/');
-    }
+    // }
   }
 
   Future signOut() async {
